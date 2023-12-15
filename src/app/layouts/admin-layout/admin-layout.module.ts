@@ -10,7 +10,7 @@ import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CompetitionComponent } from 'src/app/pages/competition/competition.component';
-// import { ToastrModule } from 'ngx-toastr';
+import { MemberComponent } from 'src/app/pages/member/member.component';
 
 @NgModule({
   imports: [
@@ -25,6 +25,7 @@ import { CompetitionComponent } from 'src/app/pages/competition/competition.comp
     DashboardComponent,
     TablesComponent,
     CompetitionComponent,
+    MemberComponent,
   ]
 })
 
