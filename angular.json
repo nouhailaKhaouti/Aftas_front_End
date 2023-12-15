@@ -27,14 +27,12 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/assets/scss/argon.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/assets/scss/argon.scss"
             ],
             "scripts": [
               "node_modules/chart.js/dist/Chart.min.js",
               "node_modules/clipboard/dist/clipboard.min.js",
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/jquery/dist/jquery.min.js"
             ]
           },
           "configurations": {

@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
+import { CompetitionModalComponent } from './components/competition-modal/competition-modal.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    CompetitionModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
