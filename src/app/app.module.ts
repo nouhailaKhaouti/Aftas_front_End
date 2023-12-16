@@ -10,14 +10,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { FullCalendarModule } from '@fullcalendar/angular'; 
-import dayGridPlugin from '@fullcalendar/daygrid'; 
-import interactionPlugin from '@fullcalendar/interaction'; 
+import { CompetitionMembersComponent } from './pages/competition-members/competition-members.component';
 
-FullCalendarModule.registerPlugins([ 
-  dayGridPlugin,
-  interactionPlugin
-]);
 
 @NgModule({
   imports: [
@@ -32,6 +26,7 @@ FullCalendarModule.registerPlugins([
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    CompetitionMembersComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

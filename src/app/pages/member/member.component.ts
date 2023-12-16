@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Member } from 'src/app/model/member.model';
 import { MemberService } from 'src/app/services/member/member.service';
 import Swal from 'sweetalert2';
@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./member.component.scss']
 })
 export class MemberComponent implements OnInit {
+  @ViewChild('memberModal') memberModal: any;
 
   Members: Member[] = [];
   Member: Member = {
@@ -37,31 +38,42 @@ export class MemberComponent implements OnInit {
       }
     );
   }
+  openModal(): void {
+    // Open the modal using the modal('show') method
+    this.memberModal.nativeElement.classList.add('show');
+    this.memberModal.nativeElement.style.display = 'block';
+    }
 
+  closeModal(): void {
+    // Close the modal using the modal('hide') method
+    this.memberModal.nativeElement.classList.add('hide');
+    this.memberModal.nativeElement.style.display = 'none';
+    
+    this.Member={
+      num:0,
+      name:'',
+      familyName:'',
+      nationality:'',
+      identityDocument:'',
+      identityNumber:''
+    };
+
+  }
   submitForm(): void {
     this.MemberService.addMemberData(this.Member).subscribe(
       (response) => {
         this.fetchMemberData();
         console.log('Member data sent successfully:', response);
 
-        this.Member={
-          num:0,
-          name:'',
-          familyName:'',
-          nationality:'',
-          identityDocument:'',
-          identityNumber:''
-        };
-
           Swal.fire('Success', 'This member has been registred successfully!', 'success');
 
         },
         (error) => {
-          
-          console.error('Error sending competition data:', error);
+          console.error('Error sending member data:', error);
           Swal.fire('Error', error.error, 'error');
   
         }
     );
+    this.closeModal();
   }
 }

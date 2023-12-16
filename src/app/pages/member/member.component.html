@@ -11,18 +11,17 @@
           <div class="card bg-default shadow">
             <div class="card-header bg-transparent border-0 d-flex justify-content-between">
               <h3 class="text-white mb-0">Member Table</h3>
-              <button type="button" class="btn btn-info text-white bg-gradient-info" placement="left" data-toggle="modal" 
-              data-target="#addMember">
+              <button type="button" class="btn btn-info text-white bg-gradient-info" placement="left" (click)="openModal()">
                 Add New Member
             </button>
-            <div class="modal fade" id="addMember" tabindex="-1" aria-labelledby="addMemberModalLabel" aria-hidden="true">
+            <div #memberModal class="modal fade" id="addMember" tabindex="-1" aria-labelledby="addMemberModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header bg-gradient-info">
                     <h5 class="modal-title text-white" id="addMemberModalLabel">
                       Add A New Member
                   </h5>
-                    <button type="button" class="btn btn-close" data-dismiss="modal" 
+                    <button type="button" class="btn btn-close" (click)="closeModal()" 
                   aria-label="Close"></button>
                   </div>
                   <div class="modal-body text-dark d-flex justify-content-around">
@@ -62,7 +61,7 @@
                     </div>
                       <div class="modal-footer d-flex justify-content-end">
                         <button type="submit" class="btn btn-info bg-gradient-info" > Submit</button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-warning" (click)="closeModal()">Close</button>
                       </div>
                     </form>
                   </div>

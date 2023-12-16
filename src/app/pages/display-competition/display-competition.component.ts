@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Competition } from 'src/app/model/competition.model';
 import { CompetitionService } from 'src/app/services/competition/competition.service';
 import { RegistreService } from 'src/app/services/register/registre.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,13 +11,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./display-competition.component.scss']
 })
 export class DisplayCompetitionComponent implements OnInit {
+  @ViewChild('registerModal') registerModal: any;
+
   isModalOpen = false;
   competitions: Competition[] = [];
   register:{ num: Number; code: String; }={
     num:0,
     code:''
   }
-  constructor(private competitionService: CompetitionService,private registerService: RegistreService) { }
+  constructor(private competitionService: CompetitionService,private registerService: RegistreService,private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.fetchCompetitionData();
@@ -48,6 +51,23 @@ export class DisplayCompetitionComponent implements OnInit {
       return 'Pending';
     }
   }
+
+  openModal(competitionCode: String): void {
+    // Open the modal using the modal('show') method
+    this.register.code = competitionCode;
+    console.log(competitionCode);
+    this.registerModal.nativeElement.classList.add('show');
+    this.registerModal.nativeElement.style.display = 'block';
+    }
+
+  closeModal(): void {
+    // Close the modal using the modal('hide') method
+    this.registerModal.nativeElement.classList.add('hide');
+    this.registerModal.nativeElement.style.display = 'none';
+    this.register = { num: 0, code: '' };
+
+  }
+
   // openModal(competitionCode: String) {
   //   console.log("inside");
   //   this.register = { num: 0, code: '' };
@@ -68,15 +88,14 @@ export class DisplayCompetitionComponent implements OnInit {
     console.log(this.register);
     this.registerService.addRegisterData(this.register).subscribe(
       (response) => {
-        console.log('Competition data sent successfully:', response);
+        console.log('This member has been registred successfully:', response);
         Swal.fire('Success', 'This member has been registred successfully!', 'success');
-        this.register = { num: 0, code: '' };
       },
       (error) => {
-        console.error('Error sending competition data:', error);
+        console.error('Error sending member data:', error);
         Swal.fire('Error', error.error, 'error');
-
       }
     );
+    this.closeModal();
   }
 }

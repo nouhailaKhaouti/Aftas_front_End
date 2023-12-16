@@ -6,14 +6,14 @@
   </div>
 <div>
 
-<div class="modal fade" id="register" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+<div #registerModal class="modal fade" id="register" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-gradient-info">
         <h5 class="modal-title text-white" id="registerModalLabel">
           Register
       </h5>
-        <button type="button" class="btn btn-close" data-dismiss="modal" 
+        <button type="button" class="btn btn-close" (click)="closeModal()" 
       aria-label="Close"></button>
       </div>
       <div class="modal-body text-dark d-flex justify-content-around">
@@ -24,7 +24,7 @@
           </div>
           <div class="modal-footer d-flex justify-content-end">
             <button type="submit" class="btn btn-info bg-gradient-info" > Submit</button>
-            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-warning" (click)="closeModal()" >Close</button>
           </div>
         </form>
       </div>
@@ -61,8 +61,7 @@
                   'pending': competition.status === 'Pending'
               }">{{ competition.status }}</a>
               <!-- Popup button -->
-              <button type="button" class="btn btn-info text-white bg-gradient-info" placement="left" data-toggle="modal" 
-              data-target="#register">
+              <button type="button" class="btn btn-info text-white bg-gradient-info" placement="left" (click)="openModal(competition.code)">
                 Register
               </button>
           </section>
