@@ -16,60 +16,59 @@
             <button type="button" class="btn btn-info text-white bg-gradient-info" placement="left" data-toggle="modal" 
             data-target="#addCompetition">
               Add New Competition
-          </button>
-          <div class="modal fade" id="addCompetition" tabindex="-1" aria-labelledby="addCompetitionModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-header bg-gradient-info">
-                  <h5 class="modal-title text-white" id="addCompetitionModalLabel">
-                    Add A New Competition
-                </h5>
-                  <button type="button" class="btn btn-close" data-dismiss="modal" 
-                aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-dark d-flex justify-content-around">
-
-                  <form (ngSubmit)="submitForm()">
-                    <div class="d-flex justify-content-around">
-                    <div>
-                      <img src="./assets/img/brand/modal1.jpg" width="500" height="700">
-                    </div>
-                    <div>
-                    <div class="mb-3">
-                      <label for="date" class="form-label">Date</label>
-                      <input type="date" class="form-control" id="date" [(ngModel)]="competition.date">
-                    </div>
-                    <div class="mb-3">
-                      <label for="startTime" class="form-label">Start Time</label>
-                      <input type="time" class="form-control" id="startTime" [(ngModel)]="competition.startTime">
-                    </div>
-                    <div class="mb-3">
-                      <label for="endTime" class="form-label">End Time</label>
-                      <input type="time" class="form-control" id="endTime" [(ngModel)]="competition.endTime">
-                    </div>
-                    <div class="mb-3">
-                      <label for="numberOfParticipants" class="form-label">Number of Participants</label>
-                      <input type="number" class="form-control" id="numberOfParticipants" [(ngModel)]="competition.numberOfParticipants">
-                    </div>
-                    <div class="mb-3">
-                      <label for="location" class="form-label">Location</label>
-                      <input type="text" class="form-control" id="location" [(ngModel)]="competition.location">
-                    </div>
-                    <div class="mb-3">
-                      <label for="amount" class="form-label">Amount</label>
-                      <input type="number" class="form-control" id="amount" step="0.01" [(ngModel)]="competition.amount">
-                    </div>
-                    </div>
+            </button>
+            <div class="modal fade" id="addCompetition" tabindex="-1" aria-labelledby="addCompetitionModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header bg-gradient-info">
+                    <h5 class="modal-title text-white" id="addCompetitionModalLabel">
+                      Add A New Competition
+                    </h5>
+                    <button type="button" class="btn btn-close" data-dismiss="modal" 
+                    aria-label="Close"></button>
                   </div>
-                    <div class="modal-footer d-flex justify-content-end">
-                      <button type="submit" class="btn btn-info bg-gradient-info" > Submit</button>
-                      <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-                    </div>
-                  </form>
+                  <div class="modal-body text-dark d-flex justify-content-around">
+                    <form (ngSubmit)="submitForm()">
+                      <div class="d-flex justify-content-around">
+                      <!-- <div>
+                        <img src="./assets/img/brand/modal1.jpg" width="500" height="700">
+                      </div> -->
+                        <div>
+                          <div class="mb-3">
+                            <label for="date" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="date" [(ngModel)]="competition.date">
+                          </div>
+                          <div class="mb-3">
+                            <label for="startTime" class="form-label">Start Time</label>
+                            <input type="time" class="form-control" id="startTime" [(ngModel)]="competition.startTime">
+                          </div>
+                          <div class="mb-3">
+                            <label for="endTime" class="form-label">End Time</label>
+                            <input type="time" class="form-control" id="endTime" [(ngModel)]="competition.endTime">
+                          </div>
+                          <div class="mb-3">
+                            <label for="numberOfParticipants" class="form-label">Number of Participants</label>
+                            <input type="number" class="form-control" id="numberOfParticipants" [(ngModel)]="competition.numberOfParticipants">
+                          </div>
+                          <div class="mb-3">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="location" [(ngModel)]="competition.location">
+                          </div>
+                          <div class="mb-3">
+                            <label for="amount" class="form-label">Amount</label>
+                            <input type="number" class="form-control" id="amount" step="0.01" [(ngModel)]="competition.amount">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer d-flex justify-content-end">
+                        <button type="submit" class="btn btn-info bg-gradient-info" > Submit</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           </div>
           <div class="table-responsive">
             <table class="table align-items-center table-dark table-flush">

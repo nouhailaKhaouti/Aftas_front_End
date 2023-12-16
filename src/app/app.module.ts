@@ -10,9 +10,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
-import { RegisterComponent } from './pages/register/register.component';
+import { FullCalendarModule } from '@fullcalendar/angular'; 
+import dayGridPlugin from '@fullcalendar/daygrid'; 
+import interactionPlugin from '@fullcalendar/interaction'; 
 
+FullCalendarModule.registerPlugins([ 
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 @NgModule({
   imports: [
@@ -23,12 +28,10 @@ import { RegisterComponent } from './pages/register/register.component';
     NgbModule,
     RouterModule,
     AppRoutingModule,
-    MdbCheckboxModule
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    RegisterComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,6 +11,7 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CompetitionComponent } from 'src/app/pages/competition/competition.component';
 import { MemberComponent } from 'src/app/pages/member/member.component';
+import { DisplayCompetitionComponent } from 'src/app/pages/display-competition/display-competition.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { MemberComponent } from 'src/app/pages/member/member.component';
     TablesComponent,
     CompetitionComponent,
     MemberComponent,
+    DisplayCompetitionComponent,
   ]
 })
 

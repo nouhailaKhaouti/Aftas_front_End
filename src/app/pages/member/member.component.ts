@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Member } from 'src/app/model/member.model';
 import { MemberService } from 'src/app/services/member/member.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-member',
@@ -52,10 +53,15 @@ export class MemberComponent implements OnInit {
           identityNumber:''
         };
 
-      },
-      (error) => {
-        console.error('Error sending Member data:', error);
-      }
+          Swal.fire('Success', 'This member has been registred successfully!', 'success');
+
+        },
+        (error) => {
+          
+          console.error('Error sending competition data:', error);
+          Swal.fire('Error', error.error, 'error');
+  
+        }
     );
   }
 }

@@ -1,0 +1,76 @@
+<div class="header  pb-8 pt-5 pt-md-8" style="background-image: url('./assets/img/brand/sideNavBar.jpg'); background-size: cover;">
+    <div class="container-fluid pt-5">
+      <div class="header-body">
+      </div>
+    </div>
+  </div>
+<div>
+
+<div class="modal fade" id="register" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-gradient-info">
+        <h5 class="modal-title text-white" id="registerModalLabel">
+          Register
+      </h5>
+        <button type="button" class="btn btn-close" data-dismiss="modal" 
+      aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-dark d-flex justify-content-around">
+        <form (ngSubmit)="submitForm()">
+          <div class="mb-3">
+            <label for="num" class="form-label">Member Number</label>
+            <input type="number" class="form-control" id="num" [(ngModel)]="register.num">
+          </div>
+          <div class="modal-footer d-flex justify-content-end">
+            <button type="submit" class="btn btn-info bg-gradient-info" > Submit</button>
+            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="container">
+    <div class="row mt-3 mx-2" >
+      <ng-container *ngFor="let competition of competitions; let i = index">
+      <div class="col-md-6 ">
+        <article class="card fl-left">
+          <section class="date">
+              <time datetime="23th feb">
+              <span>{{ competition.amount }}</span><span>MAD</span>
+              </time>
+          </section>
+          <section class="card-cont">
+              <small>dj khaled</small>
+              <h3>{{ competition.code }}</h3>
+              <div class="even-date d-flex justify-content-around">
+              <i class="fa fa-calendar"></i>
+              <time>
+                  <span>{{ competition.date }}</span>
+                  <span>{{ competition.startTime }} to {{ competition.endTime }}</span>
+              </time>
+              </div>
+              <div class="even-info">
+              <i class="fa fa-map-marker"></i>
+              <p>{{ competition.location }}</p>
+              </div>
+              <a href="/ranking" [ngClass]="{
+                  'completed': competition.status === 'Completed',
+                  'in-process': competition.status === 'In Process',
+                  'pending': competition.status === 'Pending'
+              }">{{ competition.status }}</a>
+              <!-- Popup button -->
+              <button type="button" class="btn btn-info text-white bg-gradient-info" placement="left" data-toggle="modal" 
+              data-target="#register">
+                Register
+              </button>
+          </section>
+        </article>
+      </div>
+        <!-- Add a new row after every two competitions -->
+      <div class="clearfix d-md-none" *ngIf="(i + 1) % 2 === 0"></div>
+      </ng-container>
+    </div>
+</section>
+
