@@ -4,13 +4,19 @@ import { Member } from "./member.model";
 
 
 export interface Weight{
-    hunting:Hunting,
+    hunting:requestHunting,
     weight:Number
 }
 
+export interface requestHunting{
+    num:number,
+    code:string,
+    name:string,
+}
 
 export interface Hunting{
     member:Member,
     competition:Competition
-    fish:Fish
+    fish:Fish,
+    numberOfFish:number,
 }

@@ -10,7 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { CompetitionMembersComponent } from './pages/competition-members/competition-members.component';
+import { HuntingComponent } from './pages/hunting/hunting.component';
 
 
 @NgModule({

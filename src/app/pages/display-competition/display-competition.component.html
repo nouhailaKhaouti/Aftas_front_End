@@ -44,7 +44,7 @@
           <section class="card-cont">
             <div class="d-flex justify-content-around">
               <small>dj khaled</small>
-              <button type="button" class="btn btn-info text-white bg-gradient-warning" (click)="redirectToMember(competition.code)" ><i class="nc-icon nc-button-play"></i></button>
+              <button type="button" class="btn btn-info text-white bg-gradient-warning" (click)="redirectToMember(competition)" ><i class="nc-icon nc-button-play"></i></button>
             </div>
               <h3>{{ competition.code }}</h3>
               <div class="even-date d-flex justify-content-around">
@@ -64,7 +64,7 @@
                   'pending': competition.status === 'Pending'
               }">{{ competition.status }}</a>
               <!-- Popup button -->
-              <button type="button" class="btn btn-info text-white bg-gradient-info" placement="left" (click)="openModal(competition.code)">
+              <button *ngIf="competition.isFuture" type="button" class="btn btn-info text-white bg-gradient-info" placement="left" (click)="openModal(competition.code)">
                 Register
               </button>
           </section>

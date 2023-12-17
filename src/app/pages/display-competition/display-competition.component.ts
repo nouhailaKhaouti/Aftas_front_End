@@ -2,10 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Competition } from 'src/app/model/competition.model';
 import { CompetitionService } from 'src/app/services/competition/competition.service';
 import { RegistreService } from 'src/app/services/register/registre.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { Ranking } from 'src/app/model/ranking.model';
 
 @Component({
   selector: 'app-display-competition',
@@ -14,7 +12,6 @@ import { Ranking } from 'src/app/model/ranking.model';
 })
 export class DisplayCompetitionComponent implements OnInit {
   @ViewChild('registerModal') registerModal: any;
-
   isModalOpen = false;
   competitions: Competition[] = [];
   register:{ num: Number; code: String; }={
@@ -27,17 +24,18 @@ export class DisplayCompetitionComponent implements OnInit {
     this.fetchCompetitionData();
   }
 
-  redirectToMember(code:string): void {
-    console.log(code);
-    // Redirect to the member component and pass the code as query params
-    this.router.navigate(['/competitionMembers'], { queryParams: {code} });
+  redirectToMember(competition:Competition): void {
+    console.log(competition);
+    this.router.navigate(['/competitionMembers'], {queryParams: { code: competition.code, date: competition.date }
+  });
   }
   fetchCompetitionData(): void {
     this.competitionService.getCompetitionData().subscribe(
       (data: Competition[]) => {
         this.competitions = data.map((competition) => ({
           ...competition,
-          status: this.getCompetitionStatus(competition.date)
+          status: this.getCompetitionStatus(competition.date),
+          isFuture:this.isInTheFuture(competition.date)
         }));
       },
       (error) => {
@@ -57,6 +55,15 @@ export class DisplayCompetitionComponent implements OnInit {
     } else {
       return 'Pending';
     }
+  }
+
+  isInTheFuture(date: string): boolean {
+    const competitionDate = new Date(date);
+    const currentDate = new Date();
+  
+    currentDate.setDate(currentDate.getDate() + 2);
+  
+    return competitionDate > currentDate;
   }
 
   openModal(competitionCode: String): void {

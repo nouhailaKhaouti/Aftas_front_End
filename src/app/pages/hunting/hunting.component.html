@@ -1,0 +1,111 @@
+<div class="header  pb-8 pt-5 pt-md-8" style="background-image: url('./assets/img/brand/sideNavBar.jpg'); background-size: cover;">
+    <div class="container-fluid pt-5">
+      <div class="header-body">
+      </div>
+    </div>
+  </div>
+<div>
+<div class="container mt-3 ">
+    <div class="row">
+        <div class="col-xl-8" *ngFor="let hunting of huntings">
+            <div class="card border shadow-none">
+                <div class="card-body">
+
+                    <div class="d-flex align-items-start border-bottom pb-3">
+                        <div class="me-4">
+                            <img src="https://www.bootdey.com/image/380x380/008B8B/000000" alt="" class="avatar-lg rounded">
+                        </div>
+                        <div class="flex-grow-1 align-self-center overflow-hidden mx-2">
+                            <div>
+                                <h5 class="text-truncate font-size-18 "><a href="#" class="text-dark">{{hunting.fish.name}}</a></h5>
+                                <p class="text-muted mb-0">
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star-half text-warning"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0 ms-2">
+                            <ul class="list-inline mb-0 font-size-16">
+                                <li class="list-inline-item">
+                                    <a href="#" class="text-muted px-1">
+                                        <i class="mdi mdi-trash-can-outline"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#" class="text-muted px-1">
+                                        <i class="mdi mdi-heart-outline"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mt-3">
+                                    <p class="text-muted mb-2">Score</p>
+                                    <h5 class="mb-0 mt-2"><span class="text-muted me-2"><del class="font-size-16 fw-normal">{{hunting.fish.level.points}}</del></span></h5>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="mt-3">
+                                    <p class="text-muted mb-2">Quantity</p>
+                                    <div class="d-inline-flex">
+                                        <select class="form-select form-select-sm w-xl" disabled>
+                                            <option value="" selected="">{{hunting.numberOfFish}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mt-3">
+                                    <p class="text-muted mb-2">Total</p>
+                                    <h5>1000</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end card -->
+        </div>
+
+        <div class="col-xl-4">
+            <div class="mt-5 mt-lg-0">
+                <div class="card border shadow-none">
+                    <div class="card-header bg-gradient-info border-bottom py-3 px-4">
+                        <h5 class="font-size-16 mb-0">Add New hunt <span class="float-end"></span></h5>
+                    </div>
+                    <div class="card-body p-4 pt-2">
+                        <form (ngSubmit)="submitForm()">
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                 </div>
+                                <input name="weight" class="form-control" placeholder="Fish Weight" type="number" [(ngModel)]="weight.weight">
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                 </div>
+                                 <select name="name" class="form-control" placeholder="Fish Name" [(ngModel)]="weight.hunting.name">
+                                    <option *ngFor="let fish of fishes" [value]="fish.name">{{fish.name}}</option>
+                                 </select>
+                            </div> <!-- form-group// -->                                  
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block"> Add</button>
+                            </div> <!-- form-group// -->      
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+    
+</div>
