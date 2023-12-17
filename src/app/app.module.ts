@@ -26,7 +26,6 @@ import { CompetitionMembersComponent } from './pages/competition-members/competi
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    CompetitionMembersComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

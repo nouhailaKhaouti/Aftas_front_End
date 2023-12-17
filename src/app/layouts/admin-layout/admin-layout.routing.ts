@@ -5,6 +5,7 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { CompetitionComponent } from 'src/app/pages/competition/competition.component';
 import { MemberComponent } from 'src/app/pages/member/member.component';
 import { DisplayCompetitionComponent } from 'src/app/pages/display-competition/display-competition.component';
+import { CompetitionMembersComponent } from 'src/app/pages/competition-members/competition-members.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',  component:DashboardComponent },
@@ -12,4 +13,5 @@ export const AdminLayoutRoutes: Routes = [
     {path:'competition', component:CompetitionComponent},
     {path:'member', component:MemberComponent},
     {path:'competitions', component:DisplayCompetitionComponent},
+    {path:'competitionMembers', component:CompetitionMembersComponent},
 ];

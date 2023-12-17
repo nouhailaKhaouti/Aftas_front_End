@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CompetitionComponent } from 'src/app/pages/competition/competition.component';
 import { MemberComponent } from 'src/app/pages/member/member.component';
 import { DisplayCompetitionComponent } from 'src/app/pages/display-competition/display-competition.component';
+import { CompetitionMembersComponent } from 'src/app/pages/competition-members/competition-members.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { DisplayCompetitionComponent } from 'src/app/pages/display-competition/d
     CompetitionComponent,
     MemberComponent,
     DisplayCompetitionComponent,
+    CompetitionMembersComponent,
   ]
 })
 

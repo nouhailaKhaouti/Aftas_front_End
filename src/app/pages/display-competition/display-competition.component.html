@@ -42,7 +42,10 @@
               </time>
           </section>
           <section class="card-cont">
+            <div class="d-flex justify-content-around">
               <small>dj khaled</small>
+              <button type="button" class="btn btn-info text-white bg-gradient-warning" (click)="redirectToMember(competition.code)" ><i class="nc-icon nc-button-play"></i></button>
+            </div>
               <h3>{{ competition.code }}</h3>
               <div class="even-date d-flex justify-content-around">
               <i class="fa fa-calendar"></i>

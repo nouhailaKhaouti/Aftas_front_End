@@ -1,0 +1,53 @@
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.podium__item {
+  border-radius: 20%;
+  width: 200px;
+}
+
+.podium__rank {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  color: #fff;
+}
+
+.podium__city {
+  text-align: center;
+  padding: 0 .5rem;
+}
+
+.podium__number {
+  width: 27px;
+  height: 75px;
+}
+
+.podium .first {
+  min-height: 300px;
+  background: rgb(1, 26, 126);
+background: 
+  linear-gradient(333deg, 
+  rgb(5, 76, 199) 0%, 
+  rgb(103, 142, 240) 13%, 
+  rgb(127, 165, 248) 53%, 
+  rgb(5, 22, 176) 100%);
+}
+
+.podium .second {
+  min-height: 200px;
+  background: rgba(2, 140, 252, 0.529);
+}
+
+.podium .third {
+  min-height: 100px;
+  background: rgba(0, 169, 172, 0.566);
+}

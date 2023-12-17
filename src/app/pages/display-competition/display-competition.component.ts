@@ -4,6 +4,8 @@ import { CompetitionService } from 'src/app/services/competition/competition.ser
 import { RegistreService } from 'src/app/services/register/registre.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { Ranking } from 'src/app/model/ranking.model';
 
 @Component({
   selector: 'app-display-competition',
@@ -19,12 +21,17 @@ export class DisplayCompetitionComponent implements OnInit {
     num:0,
     code:''
   }
-  constructor(private competitionService: CompetitionService,private registerService: RegistreService,private modalService: NgbModal) { }
+  constructor(private competitionService: CompetitionService,private registerService: RegistreService,private router: Router) { }
 
   ngOnInit(): void {
     this.fetchCompetitionData();
   }
 
+  redirectToMember(code:string): void {
+    console.log(code);
+    // Redirect to the member component and pass the code as query params
+    this.router.navigate(['/competitionMembers'], { queryParams: {code} });
+  }
   fetchCompetitionData(): void {
     this.competitionService.getCompetitionData().subscribe(
       (data: Competition[]) => {
@@ -67,22 +74,6 @@ export class DisplayCompetitionComponent implements OnInit {
     this.register = { num: 0, code: '' };
 
   }
-
-  // openModal(competitionCode: String) {
-  //   console.log("inside");
-  //   this.register = { num: 0, code: '' };
-  //   this.register.code = competitionCode;
-  //   console.log(this.register.code)
-  //   this.isModalOpen = true;
-  //   console.log(this.isModalOpen);
-  // }
-
-  // closeModal() {
-  //   console.log('inside');
-  //   this.isModalOpen = false;
-  //   console.log(this.isModalOpen);
-  //   this.register = { num: 0, code: '' };
-  // }
 
   submitForm(): void {
     console.log(this.register);
