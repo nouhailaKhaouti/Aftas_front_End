@@ -10,7 +10,13 @@ import Swal from 'sweetalert2';
 })
 export class MemberComponent implements OnInit {
   @ViewChild('memberModal') memberModal: any;
-
+  currentmember: Member;
+  currentIndex = -1;
+  search = '';
+  page = 1;
+  count = 0;
+  pageSize = 3;
+  pageSizes = [3, 6, 9];
   Members: Member[] = [];
   Member: Member = {
     num:0,
@@ -23,21 +29,62 @@ export class MemberComponent implements OnInit {
   constructor(private MemberService: MemberService) { }
 
   ngOnInit(): void {
-    this.fetchMemberData();
+    // this.fetchMemberData();
+    this.retrievemembers();
   }
 
-  fetchMemberData(): void {
+  getRequestParams(search: string, page: number, pageSize: number): any {
+    let params: any = {};
 
-    this.MemberService.getMemberData().subscribe(
-      (data: Member[]) => {
-        this.Members = data;
-        console.log(data);
+    if (search) {
+      params[`search`] = search;
+    }
+
+    if (page) {
+      params[`page`] = page - 1;
+    }
+
+    if (pageSize) {
+      params[`size`] = pageSize;
+    }
+
+    return params;
+  }
+
+  retrievemembers(): void {
+    const params = this.getRequestParams(this.search, this.page, this.pageSize);
+    console.log(params);
+    this.MemberService.getMembersData(params)
+    .subscribe(
+      response => {
+        const { members, totalMembers } = response;
+        this.Members = members;
+        this.count = totalMembers;
+        console.log(response);
       },
-      (error) => {
-        console.error('Error fetching Member data:', error);
-      }
-    );
+      error => {
+        console.log(error);
+      });
   }
+
+  handlePageChange(event: number): void {
+    console.log(event);
+    this.page = event;
+    this.retrievemembers();
+  }
+
+  handlePageSizeChange(event: any): void {
+    this.pageSize = event.target.value;
+    this.page = 1;
+    this.retrievemembers();
+  }
+
+
+  searchTitle(): void {
+    this.page = 1;
+    this.retrievemembers();
+  }
+
   openModal(): void {
     // Open the modal using the modal('show') method
     this.memberModal.nativeElement.classList.add('show');
@@ -59,12 +106,12 @@ export class MemberComponent implements OnInit {
     };
 
   }
+
   submitForm(): void {
     this.MemberService.addMemberData(this.Member).subscribe(
       (response) => {
-        this.fetchMemberData();
         console.log('Member data sent successfully:', response);
-
+          this.retrievemembers();
           Swal.fire('Success', 'This member has been registred successfully!', 'success');
 
         },

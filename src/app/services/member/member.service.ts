@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Member } from 'src/app/model/member.model';
@@ -12,10 +12,26 @@ export class MemberService {
 
   constructor(private http: HttpClient) { }
 
-  // GET request to fetch Member data
-  getMemberData(): Observable<Member[]> {
-    return this.http.get<Member[]>(`${this.apiUrl}`);
+
+  getMembersData(params: any): Observable<any> {
+    let httpParams = new HttpParams()
+      .set('page', params['page'])
+      .set('size', params['size']);
+  
+    if (params['search'] !== undefined) {
+      httpParams = httpParams.set('search', params['search']);
+    }
+  
+    return this.http.post<any>(`${this.apiUrl}Members`, null, {
+      reportProgress: true,
+      params: httpParams
+    });
   }
+
+  // // GET request to fetch Member data
+  // getMembersData(params: any): Observable<any> {
+  //   return this.http.post<any>(`${this.apiUrl}/Members`, { params });
+  // }
 
   // POST request to add Member data
   addMemberData(Member: Member): Observable<Member> {

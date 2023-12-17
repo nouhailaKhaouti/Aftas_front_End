@@ -54,7 +54,7 @@ this.registreService.getRegisterDataByCode(this.code).subscribe(data => {
     const competitionDate = new Date(this.date);
     const currentDate = new Date();
 
-    if (competitionDate > currentDate) {
+    if (competitionDate >= currentDate) {
       this.isCompleted=true;
     } 
   }

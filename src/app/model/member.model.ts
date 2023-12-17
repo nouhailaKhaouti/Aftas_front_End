@@ -6,3 +6,10 @@ export interface Member{
     identityDocument:String,
     identityNumber:String
 }
+
+export interface MemberPagination{
+    totalItems: number,
+    members:Member[], 
+    totalPages: number,
+    currentPage: number,
+}

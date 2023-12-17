@@ -14,6 +14,7 @@ import { MemberComponent } from 'src/app/pages/member/member.component';
 import { DisplayCompetitionComponent } from 'src/app/pages/display-competition/display-competition.component';
 import { CompetitionMembersComponent } from 'src/app/pages/competition-members/competition-members.component';
 import { HuntingComponent } from 'src/app/pages/hunting/hunting.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { HuntingComponent } from 'src/app/pages/hunting/hunting.component';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
+    NgxPaginationModule,
   ],
   declarations: [
     DashboardComponent,

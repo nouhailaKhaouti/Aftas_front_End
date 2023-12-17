@@ -157,7 +157,7 @@
           <div class="col-md-6" *ngFor="let rank of rankings; let i = index;">
             <div class="card l-bg-blue-dark text-white">
               <div class="card-statistic-3 p-4">
-                <div class="card-icon card-icon-large pb-3">
+                <div class="card-icon card-icon-large">
                     <svg width="150px" height="150px" viewBox="0 0 120 120" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
                     <style type="text/css">
@@ -195,10 +195,10 @@
                             
                             </g>
                             
-                            </svg>
+                        </svg>
                        <span class="mx-1">{{rank.member.name}}</span>
                     </h4>
-                    <button type="button" class="btn btn-info text-white bg-transparent" (click)="redirectToHunt(rank)" >
+                    <button *ngIf="isCompleted" type="button" class="btn btn-info text-white bg-transparent" (click)="redirectToHunt(rank)" >
                         <svg width="50px" height="50px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000" transform="matrix(-1, 0, 0, -1, 0, 0)rotate(270)">
 
                         <g id="SVGRepo_bgCarrier" stroke-width="0"/>
@@ -237,7 +237,8 @@
                         
                         </g>
                         
-                        </svg></button>
+                        </svg>
+                    </button>
                  </div>
                 <h5 class="card-title mb-0 text-white">
                     registration Number: {{rank.member.num}}
