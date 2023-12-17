@@ -12,6 +12,13 @@ import { Router } from '@angular/router';
 })
 export class DisplayCompetitionComponent implements OnInit {
   @ViewChild('registerModal') registerModal: any;
+  currentcompetition: Competition;
+  currentIndex = -1;
+  code = '';
+  page = 1;
+  count = 0;
+  pageSize = 4;
+  pageSizes = [4, 6, 8 ];
   isModalOpen = false;
   competitions: Competition[] = [];
   register:{ num: Number; code: String; }={
@@ -21,27 +28,70 @@ export class DisplayCompetitionComponent implements OnInit {
   constructor(private competitionService: CompetitionService,private registerService: RegistreService,private router: Router) { }
 
   ngOnInit(): void {
-    this.fetchCompetitionData();
+    this.retrievecompetitions();
   }
 
-  redirectToMember(competition:Competition): void {
-    console.log(competition);
-    this.router.navigate(['/competitionMembers'], {queryParams: { code: competition.code, date: competition.date }
-  });
+  getRequestParams(code: string, page: number, pageSize: number): any {
+    let params: any = {};
+
+    if (code) {
+      params[`code`] = code;
+    }
+
+    if (page) {
+      params[`page`] = page - 1;
+    }
+
+    if (pageSize) {
+      params[`size`] = pageSize;
+    }
+
+    return params;
   }
-  fetchCompetitionData(): void {
-    this.competitionService.getCompetitionData().subscribe(
-      (data: Competition[]) => {
-        this.competitions = data.map((competition) => ({
-          ...competition,
-          status: this.getCompetitionStatus(competition.date),
-          isFuture:this.isInTheFuture(competition.date)
+
+  retrievecompetitions(): void {
+    const params = this.getRequestParams(this.code, this.page, this.pageSize);
+    console.log(params);
+    this.competitionService.getCompetitionData(params)
+    .subscribe(
+      response => {
+        const { competitions, totalCompetitions } = response;
+      this.competitions = competitions.map((c) => ({
+          ...c,
+          status:this.getCompetitionStatus(c.date)
         }));
+        this.count = totalCompetitions;
+        console.log(this.count);
+        console.log(this.competitions);
+        console.log(response);
       },
-      (error) => {
-        console.error('Error fetching competition data:', error);
-      }
-    );
+      error => {
+        console.log(error);
+      });
+  }
+
+  handlePageChange(event: number): void {
+    console.log(event);
+    this.page = event;
+    this.retrievecompetitions();
+  }
+
+  handlePageSizeChange(event: any): void {
+    this.pageSize = event.target.value;
+    this.page = 1;
+    this.retrievecompetitions();
+  }
+
+
+  searchCode(): void {
+    this.page = 1;
+    this.retrievecompetitions();
+  }
+
+  redirectTocompetition(competition:Competition): void {
+    console.log(competition);
+    this.router.navigate(['/competitioncompetitions'], {queryParams: { code: competition.code, date: competition.date }
+  });
   }
 
   getCompetitionStatus(dateString: string): string {
@@ -75,7 +125,6 @@ export class DisplayCompetitionComponent implements OnInit {
     }
 
   closeModal(): void {
-    // Close the modal using the modal('hide') method
     this.registerModal.nativeElement.classList.add('hide');
     this.registerModal.nativeElement.style.display = 'none';
     this.register = { num: 0, code: '' };
@@ -86,11 +135,11 @@ export class DisplayCompetitionComponent implements OnInit {
     console.log(this.register);
     this.registerService.addRegisterData(this.register).subscribe(
       (response) => {
-        console.log('This member has been registred successfully:', response);
-        Swal.fire('Success', 'This member has been registred successfully!', 'success');
+        console.log('This competition has been registred successfully:', response);
+        Swal.fire('Success', 'This competition has been registred successfully!', 'success');
       },
       (error) => {
-        console.error('Error sending member data:', error);
+        console.error('Error sending competition data:', error);
         Swal.fire('Error', error.error, 'error');
       }
     );

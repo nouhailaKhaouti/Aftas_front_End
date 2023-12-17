@@ -8,7 +8,7 @@ export interface Member{
 }
 
 export interface MemberPagination{
-    totalItems: number,
+    totalMembers: number,
     members:Member[], 
     totalPages: number,
     currentPage: number,

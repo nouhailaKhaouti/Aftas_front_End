@@ -161,7 +161,7 @@
             </div>
           </div>
         </div>
-        <div class="d-flex justify-content-around">
+        <div class="d-flex justify-content-around mt-3">
           <div class="col-md-12">
             <pagination-controls
               previousLabel="Prev"
@@ -171,12 +171,16 @@
             ></pagination-controls>
           </div>
           <div>
-            Mmember per Page:
-            <select (change)="handlePageSizeChange($event)">
-              <option *ngFor="let size of pageSizes" [ngValue]="size">
-                {{ size }}
-              </option>
-            </select>
+            <div class="mb-3 d-flex justify-content-around">
+              <svg width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.46225 4.18921L4.28027 7.37119L5.34093 8.43185L6.74979 7.02299L6.74979 16.8259L5.34093 15.417L4.28027 16.4777L7.46225 19.6597L10.6442 16.4777L9.58357 15.417L8.24979 16.7508L8.24979 7.09807L9.58357 8.43185L10.6442 7.37119L7.46225 4.18921ZM20.2499 5.24989H11.9999V6.74989H20.2499V5.24989ZM20.2499 17.2499H11.9999V18.7499H20.2499V17.2499ZM11.9999 11.2499H20.2499V12.7499H11.9999V11.2499Z" fill="#080341"/>
+                </svg>
+              <select  class="form-control" (change)="handlePageSizeChange($event)">
+                <option *ngFor="let size of pageSizes" [ngValue]="size">
+                  {{ size }}
+                </option>
+              </select>
+            </div>
           </div>
         </div>
     </div>

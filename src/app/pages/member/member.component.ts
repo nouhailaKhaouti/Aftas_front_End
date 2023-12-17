@@ -86,13 +86,11 @@ export class MemberComponent implements OnInit {
   }
 
   openModal(): void {
-    // Open the modal using the modal('show') method
     this.memberModal.nativeElement.classList.add('show');
     this.memberModal.nativeElement.style.display = 'block';
     }
 
   closeModal(): void {
-    // Close the modal using the modal('hide') method
     this.memberModal.nativeElement.classList.add('hide');
     this.memberModal.nativeElement.style.display = 'none';
     

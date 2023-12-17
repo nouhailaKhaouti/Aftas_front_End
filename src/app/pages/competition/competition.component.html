@@ -9,6 +9,25 @@
 
 <div class="container-fluid mt--7">
   <div class="row mt-5">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by competition code"
+          [(ngModel)]="code"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchCode()"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
       <div class="col">
         <div class="card bg-default shadow">
           <div class="card-header bg-transparent border-0 d-flex justify-content-between">
@@ -29,9 +48,6 @@
                   <div class="modal-body text-dark d-flex justify-content-around">
                     <form (ngSubmit)="submitForm()">
                       <div class="d-flex justify-content-around">
-                      <!-- <div>
-                        <img src="./assets/img/brand/modal1.jpg" width="500" height="700">
-                      </div> -->
                         <div>
                           <div class="mb-3">
                             <label for="date" class="form-label">Date</label>
@@ -82,7 +98,7 @@
                   <th scope="col"></th>
                 </tr>
               </thead>
-              <tbody *ngFor="let competition of competitions">
+              <tbody *ngFor="let competition of competitions | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i = index">
                 <tr>
                   <th scope="row">
                     <div class="media align-items-center">
@@ -119,16 +135,15 @@
                   <td>
                     <div class="d-flex align-items-center">
                       <span class="mr-2">{{competition.amount}}</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                        </div>
-                      </div>
                     </div>
                   </td>
                   <td>
                     <div class="d-flex align-items-center">
-                      <span class="mr-2">en cours</span>
+                      <span class="mr-2"[ngClass]="{
+                        'completed': competition.status === 'Completed',
+                        'in-process': competition.status === 'In Process',
+                        'pending': competition.status === 'Pending'
+                    }">{{ competition.status }}</span>
                       <div>
                         <div class="progress">
                           <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
@@ -151,6 +166,28 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between mt-2">
+        <div class="col-md-12">
+          <pagination-controls
+            previousLabel="Prev"
+            nextLabel="Next"
+            [responsive]="true"
+            (pageChange)="handlePageChange($event)"
+          ></pagination-controls>
+        </div>
+        <div>
+          <div class="mb-3 d-flex align-items-center">
+            <svg width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M7.46225 4.18921L4.28027 7.37119L5.34093 8.43185L6.74979 7.02299L6.74979 16.8259L5.34093 15.417L4.28027 16.4777L7.46225 19.6597L10.6442 16.4777L9.58357 15.417L8.24979 16.7508L8.24979 7.09807L9.58357 8.43185L10.6442 7.37119L7.46225 4.18921ZM20.2499 5.24989H11.9999V6.74989H20.2499V5.24989ZM20.2499 17.2499H11.9999V18.7499H20.2499V17.2499ZM11.9999 11.2499H20.2499V12.7499H11.9999V11.2499Z" fill="#080341"/>
+            </svg>
+            <select class="form-control" (change)="handlePageSizeChange($event)">
+              <option *ngFor="let size of pageSizes" [ngValue]="size">
+                {{ size }}
+              </option>
+            </select>
           </div>
         </div>
       </div>

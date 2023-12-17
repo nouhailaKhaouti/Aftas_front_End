@@ -33,7 +33,26 @@
 </div>
 <section class="container">
     <div class="row mt-3 mx-2" >
-      <ng-container *ngFor="let competition of competitions; let i = index">
+      <div class="col-md-8">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search by competition code"
+            [(ngModel)]="code"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              (click)="searchCode()"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngFor="let competition of competitions | paginate: { itemsPerPage: pageSize, currentPage: page, totalItems: count }; let i = index">
       <div class="col-md-6 ">
         <article class="card fl-left">
           <section class="date">
@@ -73,6 +92,26 @@
         <!-- Add a new row after every two competitions -->
       <div class="clearfix d-md-none" *ngIf="(i + 1) % 2 === 0"></div>
       </ng-container>
+      <div class="d-flex justify-content-around">
+        <div class="col-md-12">
+          <pagination-controls
+            previousLabel="Prev"
+            nextLabel="Next"
+            [responsive]="true"
+            (pageChange)="handlePageChange($event)"
+          ></pagination-controls>
+        </div>
+        <div>
+          <div class="mb-3">
+            <label for="competition" class="form-label">Competition per Page:</label>
+            <select  class="form-control" (change)="handlePageSizeChange($event)">
+              <option *ngFor="let size of pageSizes" [ngValue]="size">
+                {{ size }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
 </section>
 
