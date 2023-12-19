@@ -48,30 +48,32 @@
                   <div class="modal-body text-dark d-flex justify-content-around">
                     <form (ngSubmit)="submitForm()">
                       <div class="d-flex justify-content-around">
-                        <div>
+                        <div class="form-group mx-2">
                           <div class="mb-3">
                             <label for="date" class="form-label">Date</label>
-                            <input type="date" class="form-control" id="date" [(ngModel)]="competition.date">
+                            <input type="date" class="form-control input-lg" id="date" [(ngModel)]="competition.date">
                           </div>
                           <div class="mb-3">
                             <label for="startTime" class="form-label">Start Time</label>
-                            <input type="time" class="form-control" id="startTime" [(ngModel)]="competition.startTime">
+                            <input type="time" class="form-control input-lg" id="startTime" [(ngModel)]="competition.startTime">
                           </div>
                           <div class="mb-3">
                             <label for="endTime" class="form-label">End Time</label>
-                            <input type="time" class="form-control" id="endTime" [(ngModel)]="competition.endTime">
+                            <input type="time" class="form-control input-lg" id="endTime" [(ngModel)]="competition.endTime">
                           </div>
+                        </div>
+                        <div class="form-group">
                           <div class="mb-3">
                             <label for="numberOfParticipants" class="form-label">Number of Participants</label>
-                            <input type="number" class="form-control" id="numberOfParticipants" [(ngModel)]="competition.numberOfParticipants">
+                            <input type="number" class="form-control input-lg" id="numberOfParticipants" [(ngModel)]="competition.numberOfParticipants">
                           </div>
                           <div class="mb-3">
                             <label for="location" class="form-label">Location</label>
-                            <input type="text" class="form-control" id="location" [(ngModel)]="competition.location">
+                            <input type="text" class="form-control input-lg" id="location" [(ngModel)]="competition.location">
                           </div>
                           <div class="mb-3">
                             <label for="amount" class="form-label">Amount</label>
-                            <input type="number" class="form-control" id="amount" step="0.01" [(ngModel)]="competition.amount">
+                            <input type="number" class="form-control input-lg" id="amount" step="0.01" [(ngModel)]="competition.amount">
                           </div>
                         </div>
                       </div>

@@ -3,13 +3,18 @@ body {
 }
 
 .container {
+  margin: auto;
+  width: max-content;
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
-
 .podium__item {
-
+flex: 1;
+margin-left: auto;
+margin-right: auto;
+}
+.podium__item svg{
   width: 200px;
 }
 
@@ -78,7 +83,7 @@ background:
 }
 
 .l-bg-blue-dark {
-  background: linear-gradient(to right, #373b44, #4286f4) !important;
+  background: linear-gradient(45deg,#4099ff,#73b4ff) !important;
   color: #fff;
 }
 
@@ -102,8 +107,8 @@ background:
   margin-left: 15px;
   color: #000;
   position: absolute;
-  right: -5px;
-  top: 20px;
+  right: 5px;
+  top: 2px;
   opacity: 0.1;
 }
 
@@ -126,3 +131,37 @@ background:
   background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
   color: #fff;
 }
+
+// .order-card {
+//   color: #fff;
+// }
+
+// .bg-c-blue {
+//   background: linear-gradient(45deg,#4099ff,#73b4ff);
+// }
+
+// .card {
+//   border-radius: 5px;
+//   -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+//   box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+//   border: none;
+//   margin-bottom: 30px;
+//   -webkit-transition: all 0.3s ease-in-out;
+//   transition: all 0.3s ease-in-out;
+// }
+
+// .card .card-block {
+//   padding: 25px;
+// }
+
+// .order-card i {
+//   font-size: 26px;
+// }
+
+// .f-left {
+//   float: left;
+// }
+
+// .f-right {
+//   float: right;
+// }

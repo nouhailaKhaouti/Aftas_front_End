@@ -91,8 +91,11 @@ export class CompetitionComponent implements OnInit {
 
   getCompetitionStatus(dateString: string): string {
     const competitionDate = new Date(dateString);
+    competitionDate.setHours(0, 0, 0, 0);
+  
     const currentDate = new Date();
-
+    currentDate.setHours(0, 0, 0, 0);
+  
     if (competitionDate < currentDate) {
       return 'Completed';
     } else if (competitionDate.toDateString() === currentDate.toDateString()) {

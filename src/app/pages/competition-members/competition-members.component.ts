@@ -26,7 +26,7 @@ export class CompetitionMembersComponent implements OnInit {
       }
     });
     this.fetchData();
-    this.fetchPodiumData();
+    this.getPodium();
   }
 
   fetchData(){
@@ -46,16 +46,15 @@ this.registreService.getRegisterDataByCode(this.code).subscribe(data => {
   });
   }
 
-  fetchPodiumData(){
-    this.podiums=this.rankings.slice(0,3);
-  }
 
   getPodium(){
     const competitionDate = new Date(this.date);
     const currentDate = new Date();
-
-    if (competitionDate >= currentDate) {
+    console.log(currentDate+" "+competitionDate);
+    if (competitionDate <= currentDate) {
       this.isCompleted=true;
     } 
+    console.log(this.isCompleted);
+
   }
 }

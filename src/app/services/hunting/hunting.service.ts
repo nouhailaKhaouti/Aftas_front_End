@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Hunting, Weight } from 'src/app/model/hunting.model';
+import { Hunting, Weight, requestHunting } from 'src/app/model/hunting.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,8 @@ export class HuntingService {
     return this.http.get<Hunting[]>(`${this.apiUrl}`);
   }
 
-  getMemberHuntingData(hunting: Hunting): Observable<Hunting[]> {
-    return this.http.post<Hunting[]>(`${this.apiUrl}/member/competition`, hunting);
+  getMemberHuntingData(hunting: requestHunting): Observable<Hunting[]> {
+    return this.http.post<Hunting[]>(`${this.apiUrl}member/competition`, hunting);
   }
   // POST request to add Hunting data
   addHuntingData(Hunting: Weight): Observable<Hunting> {

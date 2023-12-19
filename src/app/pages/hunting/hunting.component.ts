@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Fish } from 'src/app/model/fish.model';
-import { Hunting, Weight } from 'src/app/model/hunting.model';
+import { Hunting, Weight, requestHunting } from 'src/app/model/hunting.model';
 import { FishService } from 'src/app/services/fish/fish.service';
 import { HuntingService } from 'src/app/services/hunting/hunting.service';
 import Swal from 'sweetalert2';
@@ -16,7 +16,34 @@ export class HuntingComponent implements OnInit {
   code:string;
   num:number;
   fishes:Fish[]=[];
-  hunting:Hunting;
+  hunting:Hunting={
+    competition: {
+      code: '',
+      date: '',
+      startTime: '',
+      endTime: '',
+      numberOfParticipants: 0,
+      location: '',
+      amount: 0.0,
+      rankingList:[]
+    },
+    member: {
+      num:0,
+      name:'',
+      familyName:'',
+      nationality:'',
+      identityDocument:'',
+      identityNumber:''
+    },
+    fish:{
+      name:'',
+      level:{
+        code:0,
+        points:0
+      }
+    },
+    numberOfFish:0
+  };
   huntings:Hunting[]=[];
   weight:Weight={
     hunting:{
@@ -26,6 +53,11 @@ export class HuntingComponent implements OnInit {
     },
     weight:0,
   };
+  request:requestHunting={
+    code:'',
+    num:0,
+    name:''
+  }
   constructor(private route: ActivatedRoute,private fishService:FishService,private huntingService:HuntingService) { }
 
   ngOnInit(): void {
@@ -36,6 +68,9 @@ export class HuntingComponent implements OnInit {
         console.log(this.code+" "+this.num); 
         this.hunting.competition.code=this.code;
         this.hunting.member.num=this.num;
+        this.request.code=this.code;
+        this.request.num=this.num;
+        console.log(this.hunting);
         this.fetchHuntingData();
       }
     });
@@ -54,7 +89,8 @@ this.fishService.getFishData().subscribe(data => {
   }
 
   fetchHuntingData(){
-    this.huntingService.getMemberHuntingData(this.hunting).subscribe(data=>{
+
+    this.huntingService.getMemberHuntingData(this.request).subscribe(data=>{
       this.huntings=data;
       console.log(data);
     },error=>{
@@ -67,6 +103,7 @@ this.fishService.getFishData().subscribe(data => {
     this.weight.hunting.code=this.code;
     this.weight.hunting.num=this.num;
     this.huntingService.addHuntingData(this.weight).subscribe(data=>{
+      this.fetchHuntingData();
       Swal.fire("Success","the hunt has been adde successfully","success");
       console.log(data);
     },error=>{

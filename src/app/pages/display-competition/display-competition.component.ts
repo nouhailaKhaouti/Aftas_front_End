@@ -58,7 +58,8 @@ export class DisplayCompetitionComponent implements OnInit {
         const { competitions, totalCompetitions } = response;
       this.competitions = competitions.map((c) => ({
           ...c,
-          status:this.getCompetitionStatus(c.date)
+          status:this.getCompetitionStatus(c.date),
+          isFuture:this.isInTheFuture(c.date),
         }));
         this.count = totalCompetitions;
         console.log(this.count);
@@ -90,14 +91,17 @@ export class DisplayCompetitionComponent implements OnInit {
 
   redirectTocompetition(competition:Competition): void {
     console.log(competition);
-    this.router.navigate(['/competitioncompetitions'], {queryParams: { code: competition.code, date: competition.date }
+    this.router.navigate(['/competitionMembers'], {queryParams: { code: competition.code, date: competition.date }
   });
   }
 
   getCompetitionStatus(dateString: string): string {
     const competitionDate = new Date(dateString);
+    competitionDate.setHours(0, 0, 0, 0);
+  
     const currentDate = new Date();
-
+    currentDate.setHours(0, 0, 0, 0);
+  
     if (competitionDate < currentDate) {
       return 'Completed';
     } else if (competitionDate.toDateString() === currentDate.toDateString()) {
@@ -108,12 +112,13 @@ export class DisplayCompetitionComponent implements OnInit {
   }
 
   isInTheFuture(date: string): boolean {
+    console.log(date);
     const competitionDate = new Date(date);
     const currentDate = new Date();
   
-    currentDate.setDate(currentDate.getDate() + 2);
+    currentDate.setDate(currentDate.getDate() + 1);
   
-    return competitionDate > currentDate;
+    return competitionDate >= currentDate;
   }
 
   openModal(competitionCode: String): void {

@@ -7,7 +7,7 @@
   
   <div class="container-fluid mt--7">
     <div class="row mt-5">
-      <div class="col-md-8">
+      <div class="col-md-8 d-flex justify-content-end">
         <div class="input-group mb-3">
           <input
             type="text"
@@ -39,47 +39,47 @@
                   <div class="modal-header bg-gradient-info">
                     <h5 class="modal-title text-white" id="addMemberModalLabel">
                       Add A New Member
-                  </h5>
-                    <button type="button" class="btn btn-close" (click)="closeModal()" 
-                  aria-label="Close"></button>
+                    </h5>
+                    <button type="button" class="btn btn-close" (click)="closeModal()" aria-label="Close"></button>
                   </div>
-                  <div class="modal-body text-dark d-flex justify-content-around">
-  
-                    <form (ngSubmit)="submitForm()">
-                      <div class="d-flex justify-content-around">
-                      <div>
-                      <div class="mb-3">
-                        <label for="num" class="form-label">Numero</label>
-                        <input type="number" class="form-control" id="num" [(ngModel)]="Member.num">
+                  <div class="modal-body text-dark">
+                    <form (ngSubmit)="submitForm()" >
+                      <div class="d-flex justify-content-between">
+                      <div class="form-group">
+                        <div class="mb-3">
+                          <label for="num" class="form-label">Numero</label>
+                          <input type="number" class="form-control input-lg" id="num" [(ngModel)]="Member.num">
+                        </div>
+                        <div class="mb-3">
+                          <label for="name" class="form-label">Name</label>
+                          <input type="text" class="form-control input-lg" id="name" [(ngModel)]="Member.name">
+                        </div>
+                        <div class="mb-3">
+                          <label for="familyName" class="form-label">Family Name</label>
+                          <input type="text" class="form-control input-lg" id="familyName" [(ngModel)]="Member.familyName">
+                        </div>
                       </div>
-                      <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" [(ngModel)]="Member.name">
-                      </div>
-                      <div class="mb-3">
-                        <label for="familyName" class="form-label">family name</label>
-                        <input type="text" class="form-control" id="familyName" [(ngModel)]="Member.familyName">
-                      </div>
-                      <div class="mb-3">
-                        <label for="natioanlity" class="form-label">natioanlity</label>
-                        <input type="text" class="form-control" id="natioanlity" [(ngModel)]="Member.nationality">
-                      </div>
-                      <div class="mb-3">
-                        <label for="identityDocument" class="form-label">identity Document</label>
-                        <select  class="form-control" id="identity" step="0.01" [(ngModel)]="Member.identityDocument">
-                            <option value="CIN"> CIN</option>
-                            <option value="PASSPORT"> PASSPORT</option>
-                            <option value="CARTE_RESIDENCE"> CARTE_RESIDENCE</option>
-                        </select>
-                      </div>
-                      <div class="mb-3">
-                        <label for="identityNumber" class="form-label">Identity Number</label>
-                        <input type="text" class="form-control" id="identityNumber" [(ngModel)]="Member.identityNumber">
-                      </div>
+                      <div class="form-group">
+                        <div class="mb-3">
+                          <label for="natioanlity" class="form-label">Nationality</label>
+                          <input type="text" class="form-control input-lg" id="natioanlity" [(ngModel)]="Member.nationality">
+                        </div>
+                        <div class="mb-3">
+                          <label for="identity" class="form-label">Identity Document</label>
+                          <select class="form-control input-lg" id="identity" step="0.01" [(ngModel)]="Member.identityDocument">
+                            <option value="CIN">CIN</option>
+                            <option value="PASSPORT">PASSPORT</option>
+                            <option value="CARTE_RESIDENCE">CARTE_RESIDENCE</option>
+                          </select>
+                        </div>
+                        <div class="mb-3">
+                          <label for="identityNumber" class="form-label">Identity Number</label>
+                          <input type="text" class="form-control input-lg" id="identityNumber" [(ngModel)]="Member.identityNumber">
+                        </div>
                       </div>
                     </div>
                       <div class="modal-footer d-flex justify-content-end">
-                        <button type="submit" class="btn btn-info bg-gradient-info" > Submit</button>
+                        <button type="submit" class="btn btn-info bg-gradient-info">Submit</button>
                         <button type="button" class="btn btn-warning" (click)="closeModal()">Close</button>
                       </div>
                     </form>
