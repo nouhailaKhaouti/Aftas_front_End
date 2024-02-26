@@ -114,8 +114,20 @@ export class MemberComponent implements OnInit {
 
         },
         (error) => {
-          console.error('Error sending member data:', error);
-          Swal.fire('Error', error.error, 'error');
+          console.error('Error sending competition data:', error);
+
+          // Check if error.error.error is an array
+          if (Array.isArray(error.error.error)) {
+            const errorMessage = error.error.error.join('<br>'); 
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              html: errorMessage  
+            });
+          } else {
+            console.log('Unexpected error structure:', error.error);
+            Swal.fire('Error', error.error, 'error'); 
+          }
   
         }
     );

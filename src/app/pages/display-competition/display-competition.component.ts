@@ -83,7 +83,6 @@ export class DisplayCompetitionComponent implements OnInit {
     this.retrievecompetitions();
   }
 
-
   searchCode(): void {
     this.page = 1;
     this.retrievecompetitions();
@@ -145,7 +144,19 @@ export class DisplayCompetitionComponent implements OnInit {
       },
       (error) => {
         console.error('Error sending competition data:', error);
-        Swal.fire('Error', error.error, 'error');
+
+        // Check if error.error.error is an array
+        if (Array.isArray(error.error.error)) {
+          const errorMessage = error.error.error.join('<br>'); 
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            html: errorMessage  
+          });
+        } else {
+          console.log('Unexpected error structure:', error.error);
+          Swal.fire('Error', error.error, 'error'); 
+        }
       }
     );
     this.closeModal();

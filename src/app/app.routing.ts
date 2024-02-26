@@ -4,11 +4,11 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AuthenticateComponent } from './pages/authenticate/authenticate.component';
 
 const routes: Routes =[
   {
-    path: '',
-    redirectTo: 'dashboard',
+    path: '',component:AuthenticateComponent,
     pathMatch: 'full',
   }, {
     path: '',
@@ -24,6 +24,9 @@ const routes: Routes =[
     path: '**',
     redirectTo: 'dashboard'
   },
+  {
+
+  }
 
 ];
 

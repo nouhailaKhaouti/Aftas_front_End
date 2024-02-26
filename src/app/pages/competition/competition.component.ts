@@ -139,7 +139,18 @@ export class CompetitionComponent implements OnInit {
       },
       (error) => {
         console.error('Error sending competition data:', error);
-        Swal.fire("Error",error.error,"error");
+
+        if (Array.isArray(error.error.error)) {
+          const errorMessage = error.error.error.join('<br>'); 
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            html: errorMessage  
+          });
+        } else {
+          console.log('Unexpected error structure:', error.error);
+          Swal.fire('Error',error.error, 'error'); 
+        }
       }
     );
     this.closeModal();
