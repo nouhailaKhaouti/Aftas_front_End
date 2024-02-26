@@ -2,3 +2,44 @@
     // background-image: url('./assets/img/brand/sideNavBar.jpg'); 
     // background-size: cover;
 }
+
+@import url(https://fonts.googleapis.com/css?family=Oswald:400);
+
+.button:hover {
+  width: 100px;
+}
+
+.button:hover .logout{
+  opacity: .9;
+}
+
+.navigation{
+    width: 100%;
+    background-color: rgb(57, 89, 177);
+}
+
+.button {
+        	text-decoration: none;
+            float: right;
+            padding: 12px;
+            margin: 15px;
+            color: white;
+            width: 25px;
+            background-color: rgb(82, 92, 238);
+            transition: width .35s;
+            -webkit-transition: width .35s;
+            overflow: hidden
+}
+
+.logout{
+    font-size: .8em;
+    font-family: 'Oswald', sans-serif;
+    position: relative;
+    right: -18px;
+    bottom: -4px;
+    overflow: hidden;
+    letter-spacing: 3px;
+    opacity: 0;
+    transition: opacity .45s;
+    -webkit-transition: opacity .35s;
+}

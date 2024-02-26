@@ -13,22 +13,27 @@ import Swal from 'sweetalert2';
 })
 export class AuthenticateComponent implements OnInit {
 
-  constructor(    private _fb: FormBuilder,private userService:UserService, private tokenService:TokenService,private router : Router
+  constructor(private _fb: FormBuilder,private userService:UserService, private tokenService:TokenService,private router : Router
     ) { }
-  loginForm!: FormGroup;
+  // loginForm!: FormGroup;
   loginData:User={
-    email:'',password:'',member:null,token:null
+    email:'',password:'', num:null,
+    name:null,
+    familyName:null,
+    nationality:null,
+    identityDocument:null,
+    identityNumber:null,token:null
   }
 
   ngOnInit(): void {
-    this.loginForm = this._fb.group({ 
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
+    // this.loginForm = this._fb.group({ 
+    //   email: ['', [Validators.required, Validators.email]],
+    //   password: ['', [Validators.required, Validators.minLength(6)]]
+    // });
   }
   onSubmit() {
     console.log(this.loginData);
-    if (this.loginForm.valid) {
+    // if (this.loginForm.valid) {
       this.userService.loginUser(this.loginData).subscribe(
         token => {
           if (token.accessToken){
@@ -57,10 +62,9 @@ export class AuthenticateComponent implements OnInit {
           }
         }
       );
-    } else {
-      console.error('Form is invalid');
-      Swal.fire('Error','Form is invalid', 'error'); 
-
-    }
+    // } else {
+    //   console.error('Form is invalid');
+    //   Swal.fire('Error','Form is invalid', 'error'); 
+    // }
   }
 }

@@ -4,7 +4,8 @@ export interface Member{
     familyName:String,
     nationality:String,
     identityDocument:String,
-    identityNumber:String
+    identityNumber:String,
+    accountApproved:boolean|false
 }
 
 export interface MemberPagination{

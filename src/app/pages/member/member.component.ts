@@ -24,7 +24,8 @@ export class MemberComponent implements OnInit {
     familyName:'',
     nationality:'',
     identityDocument:'',
-    identityNumber:''
+    identityNumber:'',
+    accountApproved:false
   };
   constructor(private MemberService: MemberService) { }
 
@@ -100,7 +101,8 @@ export class MemberComponent implements OnInit {
       familyName:'',
       nationality:'',
       identityDocument:'',
-      identityNumber:''
+      identityNumber:'',
+      accountApproved:false
     };
 
   }

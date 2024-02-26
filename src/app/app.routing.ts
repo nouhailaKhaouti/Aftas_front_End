@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthenticateComponent } from './pages/authenticate/authenticate.component';
+import { LogUpComponent } from './pages/log-up/log-up.component';
 
 const routes: Routes =[
   {
@@ -20,12 +21,12 @@ const routes: Routes =[
       }
     ]
   },
+  // {
+  //   path: '**',
+  //   redirectTo: 'dashboard'
+  // },
   {
-    path: '**',
-    redirectTo: 'dashboard'
-  },
-  {
-
+    path:'register',component:LogUpComponent
   }
 
 ];
