@@ -128,21 +128,11 @@
                     <td>
                       <div class="d-flex align-items-center">
                         <span class="mr-2">{{Member.identityDocument}}</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                          </div>
-                        </div>
                       </div>
                     </td>
                     <td>
                       <div class="d-flex align-items-center">
                         <span class="mr-2">{{Member.identityNumber}}</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                          </div>
-                        </div>
                       </div>
                     </td>
                     <td class="text-right">
@@ -159,22 +149,17 @@
                     </td>
                     <td>
                       <div class="d-flex align-items-center">
-                        <span class="mr-2">{{Member.accountApproved}}</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                          </div>
-                        </div>
+                        <ng-container *ngIf="Member.accountApproved; else approveButton">
+                          <button type="button" class="btn btn-outline-secondary">{{ Member.accountApproved }}</button>
+                        </ng-container>
+                        <ng-template #approveButton>
+                          <button class="btn btn-primary" (click)="approveMember(Member)">Approve</button>
+                        </ng-template>
                       </div>
                     </td>
                     <td>
                       <div class="d-flex align-items-center">
-                        <span class="mr-2">{{Member.role}}</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                          </div>
-                        </div>
+                        <button type="button" class="btn btn-light" (click)="openRoleModal(Member.num)">{{Member.role}}</button>
                       </div>
                     </td>
                   </tr>
@@ -202,8 +187,42 @@
                   {{ size }}
                 </option>
               </select>
+              
             </div>
           </div>
         </div>
+    </div>
+  </div>
+
+  <div #roleModal class="modal fade" id="changeRole" tabindex="-1" aria-labelledby="changeRoleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-gradient-info">
+          <h5 class="modal-title text-white" id="changeRoleModalLabel">
+            Change Role
+          </h5>
+          <button type="button" class="btn btn-close" (click)="closeRoleModal()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-dark">
+          <form (ngSubmit)="submitFormRole()" >
+            <div class="d-flex justify-content-between">
+            <div class="form-group">
+              <div class="mb-3">
+                <label for="role" class="form-label">Roles</label>
+                <select class="form-control input-lg" id="role" step="0.01" [(ngModel)]="Member.role">
+                  <option value="ADHERENT">Adherent</option>
+                  <option value="JUDGES">Judge</option>
+                  <option value="MANAGER">Manager</option>
+                </select>
+              </div>
+            </div>
+          </div>
+            <div class="modal-footer d-flex justify-content-end">
+              <button type="submit" class="btn btn-info bg-gradient-info">Submit</button>
+              <button type="button" class="btn btn-warning" (click)="closeRoleModal()">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>

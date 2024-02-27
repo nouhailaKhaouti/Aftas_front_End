@@ -1,0 +1,47 @@
+<section class="container">
+    <div class="row mt-3 mx-2" >
+      <div class="col-md-8">
+        <div class="input-group mb-3">
+
+        </div>
+      </div>
+      <ng-container *ngFor="let competition of competitions ">
+      <div class="col-md-6 ">
+        <article class="card fl-left">
+          <section class="date">
+              <time datetime="23th feb">
+              <span>{{ competition.amount }}</span><span>MAD</span>
+              </time>
+          </section>
+          <section class="card-cont">
+            <div class="d-flex justify-content-between">
+              <div>
+                <small>dj khaled</small>
+                <h3>{{ competition.code }}</h3>
+              </div>
+            </div>
+              
+            <div class="even-date d-flex justify-content-around">
+              <i class="fa fa-calendar"></i>
+              <time>
+                  <span>{{ competition.date }}</span>
+                  <span>{{ competition.startTime }} to {{ competition.endTime }}</span>
+              </time>
+            </div>
+            <div class="even-info">
+              <i class="fa fa-map-marker"></i>
+              <p>{{ competition.location }}</p>
+            </div>
+              <a href="/ranking" [ngClass]="{
+                  'completed': competition.status === 'Completed',
+                  'in-process': competition.status === 'In Process',
+                  'pending': competition.status === 'Pending'
+              }">{{ competition.status }}</a>
+          </section>
+        </article>
+      </div>
+        <!-- Add a new row after every two competitions -->
+      <div class="clearfix d-md-none" *ngIf="(i + 1) % 2 === 0"></div>
+      </ng-container>
+    </div>
+</section>

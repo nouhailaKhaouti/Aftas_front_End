@@ -16,6 +16,7 @@ import { LogUpComponent } from './pages/log-up/log-up.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { DatePipe } from '@angular/common';
+import { MemberCompetitionsComponent } from './pages/member-competitions/member-competitions.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { DatePipe } from '@angular/common';
     RegisterComponent,
     AuthenticateComponent,
     LogUpComponent,
+    MemberCompetitionsComponent,
   ],
   providers: [
     DatePipe,

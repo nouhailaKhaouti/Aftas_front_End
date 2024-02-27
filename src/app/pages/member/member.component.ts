@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class MemberComponent implements OnInit {
   @ViewChild('memberModal') memberModal: any;
+  @ViewChild('roleModal') roleModal: any;
   currentmember: Member;
   currentIndex = -1;
   search = '';
@@ -109,6 +110,49 @@ export class MemberComponent implements OnInit {
 
   }
 
+  openRoleModal(num:Number): void {
+    this.Member.num=num;
+    this.roleModal.nativeElement.classList.add('show');
+    this.roleModal.nativeElement.style.display = 'block';
+    }
+
+  closeRoleModal(): void {
+    this.Member.num=0;
+    this.roleModal.nativeElement.classList.add('hide');
+    this.roleModal.nativeElement.style.display = 'none';
+  }
+
+  approveMember(member: Member): void{
+    let params: any = {};
+    if (member.num) {
+      params[`member`] = member.num;
+    }
+      this.MemberService.accountApproved(params).subscribe(
+        (response) => {
+          console.log('Member data sent successfully:', response);
+            this.retrievemembers();
+            Swal.fire('Success', 'This member has been approved successfully!', 'success');
+  
+          },
+          (error) => {
+            console.error('Error sending competition data:', error);
+  
+            if (Array.isArray(error.error.error)) {
+              const errorMessage = error.error.error.join('<br>'); 
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                html: errorMessage  
+              });
+            } else {
+              console.log('Unexpected error structure:', error.error);
+              Swal.fire('Error', error.error, 'error'); 
+            }
+    
+          }
+      );
+  }
+
   submitForm(): void {
     this.MemberService.addMemberData(this.Member).subscribe(
       (response) => {
@@ -120,6 +164,33 @@ export class MemberComponent implements OnInit {
         (error) => {
           console.error('Error sending competition data:', error);
 
+          // Check if error.error.error is an array
+          if (Array.isArray(error.error.error)) {
+            const errorMessage = error.error.error.join('<br>'); 
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              html: errorMessage  
+            });
+          } else {
+            console.log('Unexpected error structure:', error.error);
+            Swal.fire('Error', error.error, 'error'); 
+          }
+  
+        }
+    );
+    this.closeModal();
+  }
+
+  submitFormRole(): void {
+    this.MemberService.changeRole(this.Member.role,this.Member.num).subscribe(
+      (response) => {
+        console.log('Member data sent successfully:', response);
+          this.retrievemembers();
+          Swal.fire('Success', 'the Role is Updated successfully!', 'success');
+        },
+        (error) => {
+          console.error('Error sending competition data:', error);
           // Check if error.error.error is an array
           if (Array.isArray(error.error.error)) {
             const errorMessage = error.error.error.join('<br>'); 

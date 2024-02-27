@@ -9,6 +9,7 @@ import { CompetitionMembersComponent } from 'src/app/pages/competition-members/c
 import { HuntingComponent } from 'src/app/pages/hunting/hunting.component';
 import { roleGuard } from 'src/app/guards/role.guard';
 import { authGuard } from 'src/app/guards/auth.guard';
+import { MemberCompetitionsComponent } from 'src/app/pages/member-competitions/member-competitions.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',  component:DashboardComponent },
@@ -18,4 +19,6 @@ export const AdminLayoutRoutes: Routes = [
     {path:'competitions', component:DisplayCompetitionComponent,canActivate: [authGuard,roleGuard], data: { role: ['MANAGER','JUDGES'] }},
     {path:'competitionMembers', component:CompetitionMembersComponent,canActivate: [authGuard,roleGuard], data: { role: ['MANAGER','JUDGES'] }},
     {path:'hunting', component:HuntingComponent,canActivate: [authGuard,roleGuard], data: { role: ['MANAGER','JUDGES'] } },
+    {path:'myCompetitions', component:MemberCompetitionsComponent,canActivate: [authGuard]},
+
 ];

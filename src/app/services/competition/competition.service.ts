@@ -27,6 +27,15 @@ export class CompetitionService {
     });
   }
 
+  getMemberCompetitions(params: any): Observable<any> {
+    let httpParams = new HttpParams()
+      .set('num', params['num']);
+    return this.http.post<any>(`${this.apiUrl}`, null, {
+      reportProgress: true,
+      params: httpParams
+    });
+  }
+
   // POST request to add competition data
   addCompetitionData(competition: Competition): Observable<Competition> {
     return this.http.post<Competition>(`${this.apiUrl}`, competition);

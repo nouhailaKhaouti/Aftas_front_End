@@ -1,0 +1,33 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:400);
+.button:hover {
+  width: 100px;
+}
+
+.button:hover .logout {
+  opacity: 0.9;
+}
+
+.navigation {
+  width: 100%;
+}
+
+.button {
+  text-decoration: none;
+  float: right;
+  transition: width 0.35s;
+  -webkit-transition: width 0.35s;
+  overflow: hidden;
+}
+
+.logout {
+  font-size: 0.8em;
+  font-family: "Oswald", sans-serif;
+  position: relative;
+  right: -18px;
+  bottom: -4px;
+  overflow: hidden;
+  letter-spacing: 3px;
+  opacity: 0;
+  transition: opacity 0.45s;
+  -webkit-transition: opacity 0.35s;
+}/*# sourceMappingURL=sidebar.component.css.map */
