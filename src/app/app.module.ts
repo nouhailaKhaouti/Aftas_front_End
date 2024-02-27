@@ -13,6 +13,9 @@ import { ComponentsModule } from './components/components.module';
 import { RegisterComponent } from './pages/register/register.component';
 import { AuthenticateComponent } from './pages/authenticate/authenticate.component';
 import { LogUpComponent } from './pages/log-up/log-up.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -33,7 +36,10 @@ import { LogUpComponent } from './pages/log-up/log-up.component';
     AuthenticateComponent,
     LogUpComponent,
   ],
-  providers: [],
+  providers: [
+    DatePipe,
+      {provide: HTTP_INTERCEPTORS,useClass: AuthInterceptor,multi:true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

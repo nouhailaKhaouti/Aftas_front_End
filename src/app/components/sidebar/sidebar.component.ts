@@ -36,6 +36,6 @@ export class SidebarComponent implements OnInit {
 
   onClick(){
     localStorage.clear();
-    this.router.navigate([""])
+    this.router.navigate(['/'])
   }
 }

@@ -33,7 +33,9 @@ export class HuntingComponent implements OnInit {
       familyName:'',
       nationality:'',
       identityDocument:'',
-      identityNumber:''
+      identityNumber:'',
+      accountApproved:false,
+      role:''
     },
     fish:{
       name:'',

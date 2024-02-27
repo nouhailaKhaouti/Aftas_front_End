@@ -25,7 +25,8 @@ export class MemberComponent implements OnInit {
     nationality:'',
     identityDocument:'',
     identityNumber:'',
-    accountApproved:false
+    accountApproved:false,
+    role:''
   };
   constructor(private MemberService: MemberService) { }
 
@@ -102,7 +103,8 @@ export class MemberComponent implements OnInit {
       nationality:'',
       identityDocument:'',
       identityNumber:'',
-      accountApproved:false
+      accountApproved:false,
+      role:''
     };
 
   }

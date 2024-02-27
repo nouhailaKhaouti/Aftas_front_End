@@ -39,9 +39,9 @@ export class LogUpComponent implements OnInit {
     // if (this.registerForm.valid) {
       this.userService.RegisterUser(this.user).subscribe(
         token => {
-          if (token.accessToken){
-            this.tokenService.saveToken(token.accessToken);
-            this.tokenService.saveRefreshToken(token.refreshToken);
+          if (token.access_token){
+            this.tokenService.saveToken(token.access_token);
+            this.tokenService.saveRefreshToken(token.refresh_token);
           }
           this.router.navigate(['/'])       
          },

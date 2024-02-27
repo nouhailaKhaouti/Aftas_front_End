@@ -36,9 +36,10 @@ export class AuthenticateComponent implements OnInit {
     // if (this.loginForm.valid) {
       this.userService.loginUser(this.loginData).subscribe(
         token => {
-          if (token.accessToken){
-            this.tokenService.saveToken(token.accessToken);
-            this.tokenService.saveRefreshToken(token.refreshToken);
+          if (token.access_token){
+            console.log(token.access_token)
+            this.tokenService.saveToken(token.access_token);
+            this.tokenService.saveRefreshToken(token.refresh_token);
           }
           this.router.navigate(['/dashboard'])       
          },

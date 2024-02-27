@@ -5,7 +5,8 @@ export interface Member{
     nationality:String,
     identityDocument:String,
     identityNumber:String,
-    accountApproved:boolean|false
+    accountApproved:boolean|false,
+    role:string|null
 }
 
 export interface MemberPagination{

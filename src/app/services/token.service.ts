@@ -33,4 +33,14 @@ export class TokenService {
     localStorage.setItem('email', email);
 
   }
+
+  getTokenClaims(): any | null {
+    const token = this.getToken();
+    if (token) {
+      const [,payloadBase64] = token.split('.');
+      const payload = JSON.parse(atob(payloadBase64));
+      return payload;
+    }
+    return null;
+  }
 }

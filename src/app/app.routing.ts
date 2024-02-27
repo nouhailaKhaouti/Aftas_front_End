@@ -6,14 +6,24 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthenticateComponent } from './pages/authenticate/authenticate.component';
 import { LogUpComponent } from './pages/log-up/log-up.component';
+import { notAuthGuard } from './guards/not-auth.guard';
+import { authGuard } from './guards/auth.guard';
+
 
 const routes: Routes =[
   {
     path: '',component:AuthenticateComponent,
     pathMatch: 'full',
-  }, {
+
+  },  
+  {
+    path:'register',component:LogUpComponent,
+    pathMatch: 'full',
+  },
+  {
     path: '',
     component: AdminLayoutComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -25,9 +35,7 @@ const routes: Routes =[
   //   path: '**',
   //   redirectTo: 'dashboard'
   // },
-  {
-    path:'register',component:LogUpComponent
-  }
+
 
 ];
 
@@ -41,5 +49,6 @@ const routes: Routes =[
   ],
   exports: [
   ],
+
 })
 export class AppRoutingModule { }
