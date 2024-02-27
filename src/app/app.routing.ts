@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthenticateComponent } from './pages/authenticate/authenticate.component';
 import { LogUpComponent } from './pages/log-up/log-up.component';
+import { notAuthGuard } from './guards/not-auth.guard';
 import { authGuard } from './guards/auth.guard';
 
 
